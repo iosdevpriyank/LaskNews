@@ -13,7 +13,7 @@ This project is a **LaskNews Application** built using **Xcode 16**, targeting *
 
 Before diving into the implementation, check out the **UI/UX design** for this project created on **Figma**. The design is a blueprint for the application's visual layout and user experience flow. The Figma file includes mockups for all major screens, including the **News List**, **Bookmarks**, and **Article Details** views.
 
-- Figma Design Link: [News App Design]([https://www.figma.com/file/example-link](https://www.figma.com/design/HzTB83DKT6cjM0ZFIBAcdr/Lask-Mobile-News-App-UI-Kit-(Community)?node-id=112-1982&node-type=canvas&t=elaIY4dMZdYLCbev-0))
+- Figma Design Link: [News App Design](https://www.figma.com/design/HzTB83DKT6cjM0ZFIBAcdr/Lask-Mobile-News-App-UI-Kit-(Community)?node-id=112-1982&node-type=canvas&t=elaIY4dMZdYLCbev-0)
 
 ## Technologies
 
