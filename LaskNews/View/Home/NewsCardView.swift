@@ -6,22 +6,21 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct NewsCardView: View {
     let article: Article
     let geometry: GeometryProxy?
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            AsyncImage(url: URL(string: article.urlToImage ?? "")) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: (geometry?.size.width ?? 0) - 50, height: 200)
-                    .clipped()
-                    .cornerRadius(10)
-            } placeholder: {
-                CustomizedProgressView()
-            }
+            WebImage(url: URL(string: article.urlToImage ?? ""))
+                .resizable()
+                .indicator(.activity)
+                .scaledToFill()
+                .frame(width: (geometry?.size.width ?? 0) - 50, height: 200)
+                .clipped()
+
+            
             VStack(alignment: .leading) {
                 Text(article.title ?? "")
                     .font(.body1SemiBold)

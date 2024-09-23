@@ -7,6 +7,6 @@
 import Foundation
 
 struct Constant {
-    static let News_API_KEY = "feeaf536e8c1430daa1c04d9977fe788"
+    static let News_API_KEY = "24a3c46b329e4133adef1bbb009264a6"
     static let News_API_BASE_URL = "https://newsapi.org/v2/"
 }

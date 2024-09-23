@@ -34,8 +34,8 @@ class NewsViewModel: ObservableObject {
                     case .failure(let error):
                         print("Errors \(error)")
                     }
-                } receiveValue: { newsResponse in
-                    self.getArticles(from: newsResponse)
+                } receiveValue: { [weak self] newsResponse in
+                    self?.getArticles(from: newsResponse)
                 }
                 .store(in: &cancellableSet)
 
@@ -50,8 +50,8 @@ class NewsViewModel: ObservableObject {
             case .failure(let error):
                 print("Errors \(error)")
             }
-        } receiveValue: { newsResponse in
-            self.getArticles(from: newsResponse)
+        } receiveValue: { [weak self] newsResponse in
+            self?.getArticles(from: newsResponse)
         }
         .store(in: &self.cancellableSet)
     }

@@ -1,5 +1,5 @@
 {
-  "originHash" : "242e84dfd41ccd9620974a2844773c8fef5342d97f6e2eb2852bd0a91389a07a",
+  "originHash" : "0ac89a2eead6a97a4fd791098841aba1cdb0305960210a01c533976a1500c32f",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -11,12 +11,21 @@
       }
     },
     {
-      "identity" : "reachability.swift",
+      "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ashleymills/Reachability.swift.git",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "7cbd73f46a7dfaeca079e18df7324c6de6d1834a"
+        "revision" : "8a1be70a625683bc04d6903e2935bf23f3c6d609",
+        "version" : "5.19.7"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
+      "state" : {
+        "revision" : "5aa947356f4ea49a0c3b9968564267f6ea5abea7",
+        "version" : "3.1.2"
       }
     }
   ],

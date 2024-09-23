@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		581E23942C9C708D0085EEF8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 581E23932C9C708D0085EEF8 /* Alamofire */; };
-		581E23BD2C9D126C0085EEF8 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 581E23BC2C9D126C0085EEF8 /* Reachability */; };
+		582C94862CA1CBA800706C62 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 582C94852CA1CBA800706C62 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				582C94862CA1CBA800706C62 /* SDWebImageSwiftUI in Frameworks */,
 				581E23942C9C708D0085EEF8 /* Alamofire in Frameworks */,
-				581E23BD2C9D126C0085EEF8 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +133,7 @@
 			name = LaskNews;
 			packageProductDependencies = (
 				581E23932C9C708D0085EEF8 /* Alamofire */,
-				581E23BC2C9D126C0085EEF8 /* Reachability */,
+				582C94852CA1CBA800706C62 /* SDWebImageSwiftUI */,
 			);
 			productName = LaskNews;
 			productReference = 581E232A2C9BBDB70085EEF8 /* LaskNews.app */;
@@ -219,7 +219,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				581E23922C9C708D0085EEF8 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				581E23BB2C9D126C0085EEF8 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				582C94842CA1CBA800706C62 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 581E232B2C9BBDB70085EEF8 /* Products */;
@@ -590,12 +590,12 @@
 				minimumVersion = 5.9.1;
 			};
 		};
-		581E23BB2C9D126C0085EEF8 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+		582C94842CA1CBA800706C62 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -606,10 +606,10 @@
 			package = 581E23922C9C708D0085EEF8 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		581E23BC2C9D126C0085EEF8 /* Reachability */ = {
+		582C94852CA1CBA800706C62 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 581E23BB2C9D126C0085EEF8 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
-			productName = Reachability;
+			package = 582C94842CA1CBA800706C62 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
