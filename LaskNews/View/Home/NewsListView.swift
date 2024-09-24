@@ -19,7 +19,7 @@ struct NewsListView: View {
     var body: some View {
         GeometryReader { geometry in
             NavigationStack {
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 0) {
                     if !isSearching {
                         ScrollView(.horizontal, showsIndicators: false) {
                             // news category
@@ -27,10 +27,11 @@ struct NewsListView: View {
                                 ForEach(NewsCategory.allCases, id: \.self) { category in
                                     Text("\(category)".capitalized)
                                         .font(.body2Regular)
-                                        .padding()
+                                        .padding([.top, .bottom], 8)
+                                        .padding(.horizontal, 16)
                                         .background(selectCategory == category ? .textPrimary : .textSecondary)
                                         .foregroundStyle(.backgroundPrimary)
-                                        .cornerRadius(10)
+                                        .clipShape(.capsule)
                                         .onTapGesture {
                                             selectCategory(category: category)
                                         }
@@ -61,7 +62,7 @@ struct NewsListView: View {
                         } else {
                             // Display News cards
                             ScrollView {
-                                LazyVStack(spacing: 20) {
+                                LazyVStack(spacing: 8) {
                                     ForEach(newsVM.articles, id: \.id) { article in
                                         NavigationLink(destination: ArticleDetailView(article: article)) {
                                             NewsCardView(article: article, geometry: geometry)
@@ -73,7 +74,6 @@ struct NewsListView: View {
                                     }
                                 }
                             }
-                            .padding(.horizontal)
                         }
                     }
                     .padding(.top, 16)

@@ -16,32 +16,26 @@ struct ArticleDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                ZStack(alignment: .bottomTrailing) {
-                    ImageLoader(imageURL: URL(string: article.urlToImage ?? "")!)
-                }
+            VStack(alignment: .leading) {
+                ImageLoader(imageURL: URL(string: article.urlToImage ?? "")!)
                 VStack(alignment: .leading) {
                     Text(article.title ?? "")
                         .font(.headingH3)
                         .foregroundStyle(.textPrimary)
-                    
                     Text(article.content ?? "")
                         .font(.body1Regular)
                         .foregroundStyle(.textSecondary)
-                    Text(" Read More")
+                    Text("Read More")
                         .foregroundStyle(.brandBlue)
                         .font(.body1SemiBold)
                         .onTapGesture {
                             if let url = URL(string: article.url ?? "") {
                                 UIApplication.shared.open(url)
                             }
-                            
                         }
                 }
                 .padding(.horizontal, 10)
             }
-            .padding(.horizontal, 5)
-            
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -52,7 +46,6 @@ struct ArticleDetailView: View {
                     Image(systemName: isBookmarked ? "bookmark.fill": "bookmark")
                         .foregroundStyle(.textPrimary)
                 }
-
             }
         }
         .onAppear {

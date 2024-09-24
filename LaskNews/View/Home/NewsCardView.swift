@@ -12,10 +12,8 @@ struct NewsCardView: View {
     let article: Article
     let geometry: GeometryProxy?
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 8) {
             ImageLoader(imageURL: URL(string: article.urlToImage ?? "")!)
-                .cornerRadius(15)
-                .shadow(radius: 2)
             VStack(alignment: .leading) {
                 Text(article.title ?? "")
                     .font(.body1SemiBold)
@@ -38,9 +36,8 @@ struct NewsCardView: View {
                 }
                 .padding(.top, 5)
             }
-            .padding(.horizontal, 5)
+            .padding([.leading, .trailing, .bottom], 10)
         }
-        .padding()
         .background(.backgroundPrimary)
         .cornerRadius(15)
         .shadow(radius: 10)

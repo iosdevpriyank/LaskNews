@@ -11,11 +11,12 @@ import Combine
 struct WelcomeView: View {
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                TopView(geometry: geometry)
-                Spacer()
-                BottomView(geometry: geometry)
+            ZStack(alignment: .bottom) {
+                TopView()
+                BottomView()
+                    .frame(height: geometry.size.height / 2)
             }
+            .ignoresSafeArea()
         }
     }
 }
