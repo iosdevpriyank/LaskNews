@@ -17,6 +17,8 @@ class NewsViewModel: ObservableObject {
     
     @Published private(set) var articles: [Article] = []
     @Published private(set) var articlesData: [Article] = []
+    @Published private(set) var isLoading: Bool = false
+    @Published private(set) var errorMessage: String = ""
     @Environment(\.modelContext) private var modelContext
     
 
@@ -26,15 +28,18 @@ class NewsViewModel: ObservableObject {
     
     func getNewsByCategory(category: NewsCategory) {
         if category != .all {
+            self.loadingValues(isLoading: true)
             dataManager.getTopHeadlinesServiceData(category: category)
-                .sink { completion in
+                .sink {[weak self] completion in
+                    self?.loadingValues(isLoading: false)
                     switch completion {
                     case .finished:
                         print("Finished")
                     case .failure(let error):
-                        print("Errors \(error)")
+                        self?.errorMessage(message: "Error \(error)")
                     }
                 } receiveValue: { [weak self] newsResponse in
+                    self?.loadingValues(isLoading: false)
                     self?.getArticles(from: newsResponse)
                 }
                 .store(in: &cancellableSet)
@@ -44,14 +49,17 @@ class NewsViewModel: ObservableObject {
     }
     
     func getEverything(searchText text: String = "latest") {
-        dataManager.getEverythingServiceData(searchText: text).sink { completion in
+        loadingValues(isLoading: true)
+        dataManager.getEverythingServiceData(searchText: text).sink { [weak self] completion in
+            self?.loadingValues(isLoading: false)
             switch completion {
             case .finished:
                 print("Finished")
             case .failure(let error):
-                print("Errors \(error)")
+                self?.errorMessage(message: "Error \(error)")
             }
         } receiveValue: { [weak self] newsResponse in
+            self?.loadingValues(isLoading: false)
             self?.getArticles(from: newsResponse)
         }
         .store(in: &self.cancellableSet)
@@ -65,6 +73,18 @@ class NewsViewModel: ObservableObject {
             return true
         }
         self.articles = filterdNews
+    }
+    
+    private func loadingValues(isLoading: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = isLoading
+        }
+    }
+    
+    private func errorMessage(message: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.errorMessage = message
+        }
     }
     
     func getSavedArticles(using modelContext: ModelContext) {

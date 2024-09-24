@@ -10,15 +10,13 @@ import SwiftUI
 struct CustomizedProgressView: View {
     var body: some View {
         HStack {
-            Spacer()
-            VStack(spacing: 10) {
-                CustomizedProgressView()
+            VStack() {
+                ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .brandBlue))
                     .scaleEffect(2.5)
-                    .frame(height: 200)
+                    .padding(.bottom, 10)
                 Text("Loading...")
             }
-            Spacer()
         }
     }
 }

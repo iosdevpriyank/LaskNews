@@ -28,10 +28,14 @@ struct ImageLoader: View {
             }
         }
         .onSuccess { _,_,_ in
-            imageLoaded = true
+            DispatchQueue.main.async {
+                imageLoaded = true
+            }
         }
         .onFailure { error in
-            imageLoaded = false
+            DispatchQueue.main.async {
+                imageLoaded = false
+            }
         }
         .onAppear {
             SDImageCache.shared.config.maxMemoryCost = 1024 * 1024 * 20

@@ -19,7 +19,7 @@ struct NewsListView: View {
     var body: some View {
         GeometryReader { geometry in
             NavigationStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 10) {
                     if !isSearching {
                         ScrollView(.horizontal, showsIndicators: false) {
                             // news category
@@ -39,21 +39,44 @@ struct NewsListView: View {
                             .padding(.horizontal)
                         }
                     }
-                    
-                    // Display News cards
-                    ScrollView {
-                        LazyVStack(spacing: 20) {
-                            ForEach(newsVM.articles, id: \.id) { article in
-                                NavigationLink(destination: ArticleDetailView(article: article)) {
-                                    NewsCardView(article: article, geometry: geometry)
-                                        .cornerRadius(15)
-                                        .shadow(radius: 10)
-                                        .padding(.horizontal)
+                    ZStack {
+                        if newsVM.isLoading {
+                            VStack(spacing:0) {
+                                Image(systemName: "newspaper")
+                                    .font(.title)
+                                    .foregroundStyle(.brandBlue)
+                                    .padding(.bottom, 30)
+                                CustomizedProgressView()
+                            }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        } else if !newsVM.errorMessage.isEmpty {
+                            // Display error message
+                            VStack {
+                                Text("\(newsVM.errorMessage)")
+                                    .font(.body)
+                                    .foregroundStyle(.red)
+                                    .padding()
+                            }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        } else {
+                            // Display News cards
+                            ScrollView {
+                                LazyVStack(spacing: 20) {
+                                    ForEach(newsVM.articles, id: \.id) { article in
+                                        NavigationLink(destination: ArticleDetailView(article: article)) {
+                                            NewsCardView(article: article, geometry: geometry)
+                                                .cornerRadius(15)
+                                                .shadow(radius: 10)
+                                                .padding(.horizontal)
+                                                .padding(.top, 15)
+                                        }
+                                    }
                                 }
                             }
+                            .padding(.horizontal)
                         }
                     }
-                    .padding(.horizontal)
+                    .padding(.top, 16)
                 }
                 .searchable(text: $searchText)
                 .navigationTitle("Latest News")

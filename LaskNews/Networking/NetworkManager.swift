@@ -11,8 +11,8 @@ import Alamofire
 
 class NetworkManager: NewsServiceProtocol {
     
-    private let apiKey: String = Constant.News_API_KEY
-    private let baseURL: String = Constant.News_API_BASE_URL
+    private let apiKey: String = Constant.newsAPIKEY
+    private let baseURL: String = Constant.newsAPIBASEURL
    
     static let shared = NetworkManager()
     private init(){}

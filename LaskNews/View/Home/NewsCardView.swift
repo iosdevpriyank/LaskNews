@@ -55,5 +55,5 @@ struct NewsCardView: View {
 }
 
 #Preview {
-    NewsCardView(article: Article(source: SourceData(id: "techcrunch", name: "TechCrunch"), author: "Rebecca Bellan", title: "Pedego’s Cargo e-bike: Sporty, stylish and powerful for $4,000", description: "The Pedego’s Cargo e-bike is marketed as a powerful and sporty ride that’s geared towards parents toting kids around town and anyone who needs to schlep", url: "https://techcrunch.com/2024/09/22/pedegos-cargo-e-bike-sporty-stylish-and-powerful-for-4000/", urlToImage: "https://techcrunch.com/wp-content/uploads/2024/09/FSM_CARGO_8813.jpg?resize=1200,801", publishedAt: Date(), content: "The Pedegos Cargo e-bike is marketed as a powerful and sporty ride thats geared towards parents toting kids around town and anyone who needs to schlep heavy gear. \r\nI spent the summer testing out thi…"), geometry: nil)
+    NewsCardView(article: Constant.mockArticles.first!, geometry: nil)
 }

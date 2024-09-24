@@ -38,6 +38,10 @@ Users can tap the "Bookmark" button on any article to save it for later.
 **Offline Reading**
 Bookmarked articles can be read offline, with the app using SwiftData to ensure data persistence.
 
+## NEWSAPI.ORG
+Register with newsapi.org - [Link](https://newsapi.org/) and get your key.
+Add in Constant file.
+
 ## Contributing
 Feel free to open issues or submit pull requests if you find any bugs or have suggestions for improvement.
 
