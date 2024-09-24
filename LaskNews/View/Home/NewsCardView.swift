@@ -13,14 +13,9 @@ struct NewsCardView: View {
     let geometry: GeometryProxy?
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            WebImage(url: URL(string: article.urlToImage ?? ""))
-                .resizable()
-                .indicator(.activity)
-                .scaledToFill()
-                .frame(width: (geometry?.size.width ?? 0) - 50, height: 200)
-                .clipped()
-
-            
+            ImageLoader(imageURL: URL(string: article.urlToImage ?? "")!)
+                .cornerRadius(15)
+                .shadow(radius: 2)
             VStack(alignment: .leading) {
                 Text(article.title ?? "")
                     .font(.body1SemiBold)

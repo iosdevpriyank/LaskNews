@@ -18,36 +18,29 @@ struct ArticleDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 ZStack(alignment: .bottomTrailing) {
-                    AsyncImage(url: URL(string: article.urlToImage ?? "")) { image in
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .clipped()
-                            .frame(height: 200)
-                            .cornerRadius(15)
-                    } placeholder: {
-                        CustomizedProgressView()
-                    }
+                    ImageLoader(imageURL: URL(string: article.urlToImage ?? "")!)
                 }
-                
-                Text(article.title ?? "")
-                    .font(.headingH3)
-                    .foregroundStyle(.textPrimary)
-                
-                Text(article.content ?? "")
-                    .font(.body1Regular)
-                    .foregroundStyle(.textSecondary)
-                Text(" Read More")
-                    .foregroundStyle(.brandBlue)
-                    .font(.body1SemiBold)
-                    .onTapGesture {
-                        if let url = URL(string: article.url ?? "") {
-                                    UIApplication.shared.open(url)
-                                }
-
-                    }
+                VStack(alignment: .leading) {
+                    Text(article.title ?? "")
+                        .font(.headingH3)
+                        .foregroundStyle(.textPrimary)
+                    
+                    Text(article.content ?? "")
+                        .font(.body1Regular)
+                        .foregroundStyle(.textSecondary)
+                    Text(" Read More")
+                        .foregroundStyle(.brandBlue)
+                        .font(.body1SemiBold)
+                        .onTapGesture {
+                            if let url = URL(string: article.url ?? "") {
+                                UIApplication.shared.open(url)
+                            }
+                            
+                        }
+                }
+                .padding(.horizontal, 10)
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 5)
             
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -57,7 +50,7 @@ struct ArticleDetailView: View {
                     toggleBookmark()
                 } label: {
                     Image(systemName: isBookmarked ? "bookmark.fill": "bookmark")
-                        .foregroundStyle(isBookmarked ? .textPrimary : .brandBlue10)
+                        .foregroundStyle(.textPrimary)
                 }
 
             }

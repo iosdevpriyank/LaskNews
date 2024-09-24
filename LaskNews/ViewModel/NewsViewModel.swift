@@ -38,7 +38,8 @@ class NewsViewModel: ObservableObject {
                     self?.getArticles(from: newsResponse)
                 }
                 .store(in: &cancellableSet)
-
+        } else {
+            getEverything()
         }
     }
     

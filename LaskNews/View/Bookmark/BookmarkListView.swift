@@ -22,7 +22,6 @@ struct BookmarkListView: View {
                         ForEach(articles, id: \.id) { article in
                             NavigationLink(destination: ArticleDetailView(article: article)) {
                                 NewsCardView(article: article, geometry: geometry)
-                                    .frame(height: (200))
                                     .cornerRadius(15)
                                     .shadow(radius: 10)
                                     .padding(.horizontal)
