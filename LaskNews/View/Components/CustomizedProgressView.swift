@@ -15,7 +15,7 @@ struct CustomizedProgressView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: .brandBlue))
                     .scaleEffect(2.5)
                     .padding(.bottom, 10)
-                Text("Loading...")
+                Text("loading_text",tableName: Constant.stringTableName)
             }
         }
     }

@@ -18,5 +18,7 @@ struct Constant {
         static let bookmark = "bookmark"
         static let welcomeBuilding = "welcome_building"
         static let newspaper = "newspaper"
+        static let arrowRight = "arrow.right"
+        static let house = "house"
     }
 }

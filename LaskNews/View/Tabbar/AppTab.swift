@@ -14,18 +14,18 @@ enum AppTab: Int, CaseIterable {
     var label: String {
         switch self {
         case .home:
-            return "Home"
+            return NSLocalizedString("home", tableName: Constant.stringTableName, comment: "Home tab label")
         case .bookmarks:
-            return "Bookmarks"
+            return NSLocalizedString("bookmark", tableName: Constant.stringTableName, comment: "Bookmark tab label")
         }
     }
     
     var systemIconName: String {
         switch self {
         case .home:
-            return "house"
+            return Constant.Images.house
         case .bookmarks:
-            return "bookmark"
+            return Constant.Images.bookmark
         }
     }
 }

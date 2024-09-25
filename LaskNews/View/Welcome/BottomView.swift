@@ -31,7 +31,7 @@ struct BottomView: View {
                             Text("welcome_button", tableName: Constant.stringTableName)
                                 .font(.headline)
                                 .foregroundStyle(.white)
-                            Image(systemName: "arrow.right")
+                            Image(systemName: Constant.Images.arrowRight)
                                 .foregroundStyle(.white)
                         }
                         .padding([.top,.bottom], 15)
