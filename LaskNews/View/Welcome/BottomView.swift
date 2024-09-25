@@ -14,11 +14,11 @@ struct BottomView: View {
         GeometryReader { geometry in
             VStack(spacing: 10) {
                 VStack(spacing:20) {
-                    Text("Get The Latest News And Updates")
+                    Text("welcome_title", tableName: Constant.stringTableName)
                         .font(.headingH3)
                         .foregroundStyle(.textPrimary)
                         .multilineTextAlignment(.center)
-                    Text("From Politics to Entertainment: Your One-Stop Source for Comprehensive Coverage of the Latest News and Developments Across the Glob will be right on your hand.")
+                    Text("welcome_description", tableName: Constant.stringTableName)
                         .font(.body1Regular)
                         .foregroundStyle(.textSecondary)
                         .multilineTextAlignment(.center)
@@ -28,7 +28,7 @@ struct BottomView: View {
                         isTabBar = true
                     } label: {
                         HStack {
-                            Text("Explore")
+                            Text("welcome_button", tableName: Constant.stringTableName)
                                 .font(.headline)
                                 .foregroundStyle(.white)
                             Image(systemName: "arrow.right")

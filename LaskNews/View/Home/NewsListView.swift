@@ -12,38 +12,17 @@ struct NewsListView: View {
     @State private var selectCategory: NewsCategory = .all
     @StateObject var newsVM = NewsViewModel()
     
-    @Environment(\.isSearching) private var isSearching
-    
-    
-    
     var body: some View {
-        GeometryReader { geometry in
+        
             NavigationStack {
                 VStack(alignment: .leading, spacing: 0) {
-                    if !isSearching {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            // news category
-                            HStack {
-                                ForEach(NewsCategory.allCases, id: \.self) { category in
-                                    Text("\(category)".capitalized)
-                                        .font(.body2Regular)
-                                        .padding([.top, .bottom], 8)
-                                        .padding(.horizontal, 16)
-                                        .background(selectCategory == category ? .textPrimary : .textSecondary)
-                                        .foregroundStyle(.backgroundPrimary)
-                                        .clipShape(.capsule)
-                                        .onTapGesture {
-                                            selectCategory(category: category)
-                                        }
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
+                    CategoryView(selectCategory: selectCategory) { category in
+                        selectCategory(category: category)
                     }
                     ZStack {
                         if newsVM.isLoading {
                             VStack(spacing:0) {
-                                Image(systemName: "newspaper")
+                                Image(systemName: Constant.Images.newspaper)
                                     .font(.title)
                                     .foregroundStyle(.brandBlue)
                                     .padding(.bottom, 30)
@@ -61,15 +40,17 @@ struct NewsListView: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                         } else {
                             // Display News cards
-                            ScrollView {
-                                LazyVStack(spacing: 8) {
-                                    ForEach(newsVM.articles, id: \.id) { article in
-                                        NavigationLink(destination: ArticleDetailView(article: article)) {
-                                            NewsCardView(article: article, geometry: geometry)
-                                                .cornerRadius(15)
-                                                .shadow(radius: 10)
-                                                .padding(.horizontal)
-                                                .padding(.top, 15)
+                            GeometryReader { geometry in
+                                ScrollView {
+                                    LazyVStack(spacing: 8) {
+                                        ForEach(newsVM.articles, id: \.id) { article in
+                                            NavigationLink(destination: ArticleDetailView(article: article)) {
+                                                NewsCardView(article: article, geometry: geometry)
+                                                    .cornerRadius(15)
+                                                    .shadow(radius: 10)
+                                                    .padding(.horizontal)
+                                                    .padding(.top, 15)
+                                            }
                                         }
                                     }
                                 }
@@ -78,8 +59,8 @@ struct NewsListView: View {
                     }
                     .padding(.top, 16)
                 }
-                .searchable(text: $searchText)
-                .navigationTitle("Latest News")
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+                .navigationTitle(Text("latest_news", tableName: Constant.stringTableName))
                 .onSubmit(of: .search, {
                     if selectCategory != .all {
                         selectCategory = .all
@@ -96,8 +77,7 @@ struct NewsListView: View {
                     newsVM.getEverything()
                 }
             }
-            
-        }
+        
     }
     
     private func resetFilter() {

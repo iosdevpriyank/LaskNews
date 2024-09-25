@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct BottomTabView: View {
-    @Binding var selectedTab: Int {
-        didSet {
-            print("Selected tab: \(selectedTab)")
-        }
-    }
+    @Binding var selectedTab: Int
+    
     var geometry: GeometryProxy?
     var bottomSafeAreaPadding: CGFloat?
     

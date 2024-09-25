@@ -13,41 +13,54 @@ struct ArticleDetailView: View {
     let article: Article
     @State private var isBookmarked: Bool = false
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                ImageLoader(imageURL: URL(string: article.urlToImage ?? "")!)
-                VStack(alignment: .leading) {
-                    Text(article.title ?? "")
-                        .font(.headingH3)
+        VStack {
+            HStack {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
                         .foregroundStyle(.textPrimary)
-                    Text(article.content ?? "")
-                        .font(.body1Regular)
-                        .foregroundStyle(.textSecondary)
-                    Text("Read More")
-                        .foregroundStyle(.brandBlue)
-                        .font(.body1SemiBold)
-                        .onTapGesture {
-                            if let url = URL(string: article.url ?? "") {
-                                UIApplication.shared.open(url)
-                            }
-                        }
+                        .font(.title)
                 }
-                .padding(.horizontal, 10)
-            }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+                Spacer()
                 Button {
                     toggleBookmark()
                 } label: {
                     Image(systemName: isBookmarked ? "bookmark.fill": "bookmark")
                         .foregroundStyle(.textPrimary)
+                        .font(.title2)
+                }
+            }
+            .frame(height: 44)
+            .padding(.horizontal, 20)
+            ScrollView {
+                VStack(alignment: .leading) {
+                    ImageLoader(imageURL: URL(string: article.urlToImage ?? "")!)
+                    VStack(alignment: .leading) {
+                        Text(article.title ?? "")
+                            .font(.headingH3)
+                            .foregroundStyle(.textPrimary)
+                        Text(article.content ?? "")
+                            .font(.body1Regular)
+                            .foregroundStyle(.textSecondary)
+                        Text("Read More")
+                            .foregroundStyle(.brandBlue)
+                            .font(.body1SemiBold)
+                            .onTapGesture {
+                                if let url = URL(string: article.url ?? "") {
+                                    UIApplication.shared.open(url)
+                                }
+                            }
+                    }
+                    .padding(.horizontal, 10)
                 }
             }
         }
+        .navigationBarHidden(true)
+        .toolbarVisibility(.hidden, for: .navigationBar, .tabBar)
         .onAppear {
             isBookmarked = fetchSavedArticles().filter({$0.id == self.article.id}).count > 0
         }

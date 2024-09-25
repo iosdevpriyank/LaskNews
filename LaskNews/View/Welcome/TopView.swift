@@ -10,7 +10,7 @@ import SwiftUI
 struct TopView: View {
     var body: some View {
         GeometryReader { geometry in
-            Image("welcome_building")
+            Image(Constant.Images.welcomeBuilding)
                 .resizable()
                 .ignoresSafeArea()
                 .background(LinearGradient(colors: [.brandBlue, .brandBlue10], startPoint: .top, endPoint: .bottom))
