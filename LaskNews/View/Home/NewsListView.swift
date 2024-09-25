@@ -11,14 +11,14 @@ struct NewsListView: View {
     @State private var searchText: String = ""
     @State private var selectCategory: NewsCategory = .all
     @StateObject var newsVM = NewsViewModel()
-    
+    @State private var isSearching: Bool = false
     var body: some View {
         
             NavigationStack {
                 VStack(alignment: .leading, spacing: 0) {
-                    CategoryView(selectCategory: selectCategory) { category in
+                    CategoryView(selectCategory: selectCategory, onTapped: { category in
                         selectCategory(category: category)
-                    }
+                    }, isSearchActive: $isSearching)
                     ZStack {
                         if newsVM.isLoading {
                             VStack(spacing:0) {
@@ -57,7 +57,7 @@ struct NewsListView: View {
                             }
                         }
                     }
-                    .padding(.top, 16)
+                    .padding(.top, isSearching ? 5 : 16)
                 }
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
                 .navigationTitle(Text("latest_news", tableName: Constant.stringTableName))

@@ -37,6 +37,16 @@ final class NewsViewModelTests: XCTestCase {
         XCTAssertEqual(newsViewModel.articles.first?.title, "Singapore: Ex-minister Iswaran's corruption trial set to begin")
     }
     
+    func testGetNewsWithCategoryAllSuccess() {
+        
+        mockNewsService.testResponse = mockNewsResponse
+        
+        newsViewModel.getNewsByCategory(category: .all)
+        
+        XCTAssertEqual(newsViewModel.articles.count, 2)
+        XCTAssertEqual(newsViewModel.articles.first?.title, "Singapore: Ex-minister Iswaran's corruption trial set to begin")
+    }
+    
     func testGetNewsByCategoryFailure() {
         
         mockNewsService.isReturnError = true

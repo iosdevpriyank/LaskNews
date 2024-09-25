@@ -11,6 +11,7 @@ struct CategoryView: View {
     var selectCategory: NewsCategory
     @Environment(\.isSearching) private var isSearching
     var onTapped: (NewsCategory) -> Void
+    @Binding var isSearchActive: Bool
     var body: some View {
         if !isSearching {
             ScrollView(.horizontal, showsIndicators: false) {
@@ -36,7 +37,7 @@ struct CategoryView: View {
 }
 
 #Preview {
-    CategoryView(selectCategory: .all) { category in
+    CategoryView(selectCategory: .all, onTapped: { category in
         print("Category \(category)")
-    }
+    }, isSearchActive: .constant(false))
 }
